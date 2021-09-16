@@ -9,10 +9,9 @@ import UIKit
 import AlamofireImage
 
 class MovieGridViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
-
-    
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
     var movies = [[String:Any]]()
     
     override func viewDidLoad() {
@@ -20,6 +19,19 @@ class MovieGridViewController: UIViewController, UICollectionViewDataSource, UIC
 
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        
+        //controls space in between the rows
+        layout.minimumLineSpacing = -20
+        layout.minimumInteritemSpacing = 0
+        
+        let width = (view.frame.size.width - layout.minimumInteritemSpacing * 2) / 10
+        layout.itemSize = CGSize(width: width, height: width * 3 / 2)
+        
+        
+        
+        
         
         // Do any additional setup after loading the view.
         let url = URL(string: "https://api.themoviedb.org/3/movie/297762/similar?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
@@ -39,8 +51,6 @@ class MovieGridViewController: UIViewController, UICollectionViewDataSource, UIC
         }
         task.resume()
     }
-    
-
     /*
     // MARK: - Navigation
 
@@ -50,7 +60,6 @@ class MovieGridViewController: UIViewController, UICollectionViewDataSource, UIC
         // Pass the selected object to the new view controller.
     }
     */
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
     }
@@ -65,9 +74,6 @@ class MovieGridViewController: UIViewController, UICollectionViewDataSource, UIC
         let posterUrl = URL(string: baseUrl + posterPath)
         
         cell.posterView.af.setImage(withURL: posterUrl!)
-        
-        
-        
         
         return cell
     }

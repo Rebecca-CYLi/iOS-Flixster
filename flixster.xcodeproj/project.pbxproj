@@ -152,13 +152,13 @@
 				E34967B526EED49400B04376 /* AppDelegate.swift */,
 				E34967B726EED49400B04376 /* SceneDelegate.swift */,
 				E34967BB26EED49400B04376 /* Main.storyboard */,
-				E39B86DC26F066C600FF53B4 /* MovieGridCell.swift */,
 				E34967BE26EED49500B04376 /* Assets.xcassets */,
 				E34967C026EED49500B04376 /* LaunchScreen.storyboard */,
 				E34967C326EED49500B04376 /* Info.plist */,
 				E34967F126EED5E800B04376 /* MoviesViewController.swift */,
 				E38EDC1A26EFEEDA00E95373 /* MovieDetailsViewController.swift */,
 				E39B86D426F04D8400FF53B4 /* MovieGridViewController.swift */,
+				E39B86DC26F066C600FF53B4 /* MovieGridCell.swift */,
 				E34967F626EED98900B04376 /* MovieCell.swift */,
 			);
 			path = flixster;
