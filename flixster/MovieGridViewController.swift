@@ -23,18 +23,15 @@ class MovieGridViewController: UIViewController, UICollectionViewDataSource, UIC
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         
         //controls space in between the rows
-        layout.minimumLineSpacing = -20
-        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 2
         
-        let width = (view.frame.size.width - layout.minimumInteritemSpacing * 2) / 10
-        layout.itemSize = CGSize(width: width, height: width * 3 / 2)
+        layout.minimumInteritemSpacing = 2
         
-        
-        
-        
+        let width = (view.frame.size.width - layout.minimumInteritemSpacing * 2) / 3
+        layout.itemSize = CGSize(width: width, height: width * 1.5)
         
         // Do any additional setup after loading the view.
-        let url = URL(string: "https://api.themoviedb.org/3/movie/297762/similar?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
+        let url = URL(string: "https://api.themoviedb.org/3/movie/566525/similar?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
         let task = session.dataTask(with: request) { (data, response, error) in
@@ -51,15 +48,33 @@ class MovieGridViewController: UIViewController, UICollectionViewDataSource, UIC
         }
         task.resume()
     }
-    /*
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-    }
-    */
+        print("preparing screen")
+        
+        
+        
+        
+        
+        //FIND THE SELECTED MOVIE
+        let cell = sender as! UICollectionViewCell
+        let indexPath = collectionView.indexPath(for: cell)!
+        let movie = movies[indexPath.item]
+        
+        //PASS THE SELECTED MOVIE TO THE DETAILS VIEW CONTROLLER
+        let gridDetailsViewController = segue.destination as! MovieGridDetailsViewController
+        gridDetailsViewController.movie = movie
+        
+        
+        
+        
+        
+
+    }//end of prepare
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
     }
